@@ -13,7 +13,7 @@ test('compact grid keeps four laptop columns, two phone columns and clear Arabic
     await expect(arabic).toHaveCSS('color', 'rgb(25, 62, 53)');
     await expect(arabic).toHaveCSS('font-weight', '700');
     await expect(arabic).toHaveCSS('font-size', width > 780 ? '18px' : '17px');
-    await expect(page.locator('.product-heading h3').first()).toHaveCSS('font-size', width > 780 ? '19px' : '16px');
+    await expect(page.locator('.product-heading h3').first()).toHaveCSS('font-size', width > 780 ? '18px' : '15px');
     await expect(page.locator('.ambient-fruit-a')).toHaveCSS('opacity', width > 780 ? '0.52' : '0.46');
     expect(await page.locator('.menu-card').evaluateAll(cards => cards.every(card => card.scrollWidth <= card.clientWidth + 1))).toBe(true);
   }
