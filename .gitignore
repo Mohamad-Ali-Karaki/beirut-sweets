@@ -216,3 +216,30 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# React build, dependencies and browser test artifacts
+node_modules/
+dist/
+test-results/
+playwright-report/
+artifacts/
+
+# Local credentials and environment overrides
+.env.*
+!.env.example
+!.env.sample
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Tool caches, coverage and local editor/OS files
+.vite/
+coverage/
+blob-report/
+*.tsbuildinfo
+*.local
+.DS_Store
+Thumbs.db
+.idea/

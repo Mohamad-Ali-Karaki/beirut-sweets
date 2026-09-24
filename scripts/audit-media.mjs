@@ -1,0 +1,11 @@
+import { chromium } from '@playwright/test';
+import { MENU } from '../src/menu.js';
+import { mkdir } from 'node:fs/promises';
+await mkdir('artifacts', { recursive: true });
+const browser = await chromium.launch({ channel: 'chrome' });
+const page = await browser.newPage({ viewport: { width: 1200, height: 1500 } });
+await page.goto('http://127.0.0.1:5173/?skipIntro=1');
+await page.setContent('<style>body{background:#eee;font:14px Arial;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:15px}figure{margin:0}img{width:100%;height:220px;object-fit:cover}figcaption{padding:6px}</style>' + MENU.map(item => `<figure><img src="http://127.0.0.1:5173${item.image}"><figcaption>${item.id}: ${item.name}</figcaption></figure>`).join(''));
+await page.locator('img').evaluateAll(images => Promise.all(images.map(img => img.decode().catch(() => {}))));
+await page.screenshot({ path: 'artifacts/media-audit.png', fullPage: true });
+await browser.close();
